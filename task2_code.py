@@ -21,10 +21,6 @@ for x in [0, 1]:
 
 set_a = set(a)
 set_b = set(b)
-print(*a, sep='\n')
-print()
-print(*b, sep='\n')
-print()
 mas = list(set_a & set_b)
 
 
@@ -32,7 +28,7 @@ def f(x, y, z, w, q):
     return ((y and not x) or (z and w)) and (q or w or not z)
 
 
-print(*sorted(mas), sep='\n')
+# print(*sorted(mas), sep='\n')
 for p in permutations('xyzwq'):
     if [f(**dict(zip(p, r))) for r in mas] == [1] * len(mas):
         print(p)
