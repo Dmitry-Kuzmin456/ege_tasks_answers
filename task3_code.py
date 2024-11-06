@@ -1,5 +1,4 @@
 import itertools
-from pprint import pprint
 
 sl = {}
 for i in itertools.product('xyzw', repeat=3):
