@@ -25,9 +25,6 @@ for i in itertools.product(["<=", "and", "or", "=="], repeat=2):
         if len(comb & mas) == 7:
             sl[''.join(a)] += 1
 
-        if mas == comb:
-            print(*i, *a)
-
 print(sl)
 mmax = 0
 rez = ''
