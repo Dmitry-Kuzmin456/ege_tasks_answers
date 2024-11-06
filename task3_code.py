@@ -2,36 +2,33 @@ import itertools
 from pprint import pprint
 
 sl = {}
-for i in itertools.product('ABCD', repeat=3):
+for i in itertools.product('xyzw', repeat=3):
     sl[''.join(i)] = 0
 
 mas = set()
-for A in [0, 1]:
-    for B in [0, 1]:
-        for C in [0, 1]:
-            for D in [0, 1]:
-                f = (A and B) or (C and D)
-                mas.add((A, B, C, D, f))
+for x in [0, 1]:
+    for y in [0, 1]:
+        for z in [0, 1]:
+            for w in [0, 1]:
+                f = (x and y) or (z and w)
+                mas.add((x, y, z, w, f))
 
-q = 0
 for i in itertools.product(["<=", "and", "or", "=="], repeat=2):
-    for a in itertools.product("ABCD", repeat=3):
-        heraks = set()
-        for A in [0, 1]:
-            for B in [0, 1]:
-                for C in [0, 1]:
-                    for D in [0, 1]:
-                        za = f'((not A or B) and (C == D)) or ((A and not C) <= (({a[0]} {i[0]} {a[1]}) {i[1]} {a[2]}))'
-                        heraks.add((A, B, C, D, eval(za)))
+    for a in itertools.product("xyzw", repeat=3):
+        comb = set()
+        for x in [0, 1]:
+            for y in [0, 1]:
+                for z in [0, 1]:
+                    for w in [0, 1]:
+                        za = f'((not x or y) and (z == w)) or ((x and not z) <= (({a[0]} {i[0]} {a[1]}) {i[1]} {a[2]}))'
+                        comb.add((x, y, z, w, eval(za)))
 
-        if len(heraks & mas) == 7:
-            q += 1
+        if len(comb & mas) == 7:
             sl[''.join(a)] += 1
 
-        if mas == heraks:
+        if mas == comb:
             print(*i, *a)
 
-print(q)
 print(sl)
 mmax = 0
 rez = ''
